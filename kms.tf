@@ -31,14 +31,13 @@ resource "aws_kms_key" "this" {
     Version = "2012-10-17"
   })
   tags = {
-      Name = "DNSSEC-Key",
-    }
+    Name = "DNSSEC-Key-${replace(var.domain_name, ".", "-")}",
+  }
 
 }
 
-
 resource "aws_kms_alias" "this" {
-  count = var.dnssec == true ? 1 : 0
-  name          = "alias/${var.key_alias_name}"
+  count         = var.dnssec == true ? 1 : 0
+  name          = "alias/${var.key_alias_name}-${replace(var.domain_name, ".", "-")}"
   target_key_id = aws_kms_key.this[0].key_id
 }
