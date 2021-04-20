@@ -16,7 +16,7 @@ resource "aws_route53_hosted_zone_dnssec" "this" {
 
 resource "aws_route53_record" "this" {
   count = var.dnssec == true ? 1 : 0
-  zone_id = aws_route53_zone.this[0].zone_id
+  zone_id = aws_route53_zone.this.zone_id
   name = "@.${aws_route53_zone.this.name}"
   type = "DS"
   ttl  = var.ttl
