@@ -14,7 +14,7 @@ variable "signing_key_name" {
     default = "DefaultSigningKey"
 }
 
-variable "ttt" {
+variable "ttl" {
   description = "The value to use in seconds for TTL of the DS records"
   default = 300
   type = number
