@@ -1,5 +1,5 @@
 locals {
-  dnssec = length(var.kms_key_id) > 0 ? true : false
+  dnssec = length(var.kms_key_arn) > 0 ? true : false
 }
 
 
