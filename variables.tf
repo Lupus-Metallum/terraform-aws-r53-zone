@@ -3,9 +3,16 @@ variable "domain_name" {
   type        = string
 }
 
+variable "dnssec" {
+  description = "Should DNSSEC be enabled for this domain"
+  type        = bool
+  default     = true
+}
+
 variable "kms_key_arn" {
   description = "The arn of the KMS key to sign this zone with."
   type        = string
+  default     = ""
 }
 
 variable "signing_key_name" {
