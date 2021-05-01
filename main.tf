@@ -54,7 +54,7 @@ resource "aws_route53_record" "dmarc_this" {
 }
 
 resource "aws_route53_record" "caa_this" {
-  count   = var.amazon_caa_record == true ? [1] : [0]
+  count   = var.amazon_caa_record == true ? 1 : 0
   zone_id = aws_route53_zone.this.zone_id
   name    = aws_route53_zone.this.name
   type    = "CAA"
@@ -68,7 +68,7 @@ resource "aws_route53_record" "caa_this" {
 }
 
 resource "aws_route53_record" "github_this" {
-  count   = var.github_verification_record != "" && var.github_org_name != "" ? [1] : [0]
+  count   = var.github_verification_record != "" && var.github_org_name != "" ? 1 : 0
   zone_id = aws_route53_zone.this.zone_id
   name    = "_github-challenge-${var.github_org_name}.${aws_route53_zone.this.name}"
   type    = "TXT"
