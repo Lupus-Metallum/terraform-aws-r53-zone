@@ -77,3 +77,31 @@ resource "aws_route53_record" "github_this" {
     var.github_verification_record
   ]
 }
+
+resource "aws_route53_record" "protonmail_domainkey_this" {
+  count   = length(var.protonmail_domainkey) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "protonmail._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = [var.protonmail_domainkey]
+}
+resource "aws_route53_record" "protonmail2_domainkey_this" {
+  count   = length(var.protonmail2_domainkey) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "protonmail2._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = [var.protonmail2_domainkey]
+}
+resource "aws_route53_record" "protonmail3_domainkey_this" {
+  count   = length(var.protonmail3_domainkey) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "protonmail3._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = [var.protonmail3_domainkey]
+}

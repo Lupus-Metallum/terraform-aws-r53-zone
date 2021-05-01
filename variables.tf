@@ -61,3 +61,21 @@ variable "dmarc_value" {
   default     = []
   type        = list(string)
 }
+
+variable "protonmail_domainkey" {
+  description = "Value to use for the first Protonmail DKIM CNAME Record, this is given in the custom domain setup page."
+  default     = ""
+  type        = string
+}
+
+variable "protonmail2_domainkey" {
+  description = "Value to use for the second Protonmail DKIM CNAME Record, this is given in the custom domain setup page."
+  default     = ""
+  type        = string
+}
+
+variable "protonmail3_domainkey" {
+  description = "Value to use for the third Protonmail DKIM CNAME Record, this is given in the custom domain setup page"
+  default     = ""
+  type        = string
+}
