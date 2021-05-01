@@ -47,7 +47,7 @@ resource "aws_route53_record" "mx_this" {
 resource "aws_route53_record" "dmarc_this" {
   count   = length(var.dmarc_value) > 0 ? 1 : 0
   zone_id = aws_route53_zone.this.zone_id
-  name    = "_dmarc.${aws_route53_zone.this.}"
+  name    = "_dmarc.${aws_route53_zone.this.name}"
   type    = "TXT"
   ttl     = var.ttl
   records = var.dmarc_value
