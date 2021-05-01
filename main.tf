@@ -23,3 +23,50 @@ resource "aws_route53_record" "this" {
 
   records = [aws_route53_key_signing_key.this[0].ds_record]
 }
+
+resource "aws_route53_record" "txt_this" {
+  count   = length(var.root_txt) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = aws_route53_zone.this.name
+  type    = "TXT"
+  ttl     = var.ttl
+
+  records = var.root_txt
+}
+
+resource "aws_route53_record" "mx_this" {
+  count   = length(var.root_mx) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = aws_route53_zone.this.name
+  type    = "MX"
+  ttl     = var.ttl
+
+  records = var.root_mx
+}
+
+resource "aws_route53_record" "caa_this" {
+  count   = var.amazon_caa_record == true ? [1] : [0]
+  zone_id = aws_route53_zone.this.zone_id
+  name    = aws_route53_zone.this.name
+  type    = "CAA"
+  ttl     = var.ttl
+  records = [
+    "0 issue \"amazon.com\"",
+    "0 issue \"amazonaws.com\"",
+    "0 issue \"amazontrust.com\"",
+    "0 issue \"awstrust.com\""
+  ]
+}
+
+resource "aws_route53_record" "github_this" {
+  count   = var.github_verification_record != "" && var.github_org_name != "" ? [1] : [0]
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "_github-challenge-${var.github_org_name}.${aws_route53_zone.this.name}"
+  type    = "TXT"
+  ttl     = var.ttl
+  records = [
+    var.github_verification_record
+  ]
+}
+
+google-site-verification=OXswmiMZIM6DoY-4JN7gpXNOvEurD6cu92pWDL0NdZE
