@@ -44,6 +44,15 @@ resource "aws_route53_record" "mx_this" {
   records = var.root_mx
 }
 
+resource "aws_route53_record" "dmarc_this" {
+  count   = length(var.dmarc_value) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "_dmarc.${aws_route53_zone.this.}"
+  type    = "TXT"
+  ttl     = var.ttl
+  records = var.dmarc_value
+}
+
 resource "aws_route53_record" "caa_this" {
   count   = var.amazon_caa_record == true ? [1] : [0]
   zone_id = aws_route53_zone.this.zone_id

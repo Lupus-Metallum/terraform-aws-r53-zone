@@ -51,7 +51,13 @@ variable "root_txt" {
 }
 
 variable "root_mx" {
-  description = "Values to put in the root/apex MX of the zone?"
+  description = "Values to put in the root/apex MX record of the zone?"
+  default     = []
+  type        = list(string)
+}
+
+variable "dmarc_value" {
+  description = "Values to put in the root/apex dmarc record of the zone?"
   default     = []
   type        = list(string)
 }
