@@ -77,5 +77,3 @@ resource "aws_route53_record" "github_this" {
     var.github_verification_record
   ]
 }
-
-google-site-verification=OXswmiMZIM6DoY-4JN7gpXNOvEurD6cu92pWDL0NdZE
