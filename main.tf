@@ -68,7 +68,7 @@ resource "aws_route53_record" "caa_this" {
 }
 
 resource "aws_route53_record" "outlook_autodiscover_this" {
-  count   = var.outlook_autodiscover = true ? 1 : 0
+  count   = var.outlook_autodiscover == true ? 1 : 0
   zone_id = aws_route53_zone.this.zone_id
   name    = "autodiscover.${aws_route53_zone.this.name}"
   type    = "CNAME"
