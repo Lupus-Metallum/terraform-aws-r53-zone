@@ -32,6 +32,12 @@ variable "amazon_caa_record" {
   type        = bool
 }
 
+variable "outlook_autodiscover" {
+  description = "Should we create the autodiscover CNAME record that points to autodiscover.outlook.com?"
+  default     = false
+  type        = bool
+}
+
 variable "github_verification_record" {
   description = "Value of the GitHub verification record?"
   default     = ""
