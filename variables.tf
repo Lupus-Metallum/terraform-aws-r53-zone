@@ -85,3 +85,9 @@ variable "protonmail3_domainkey" {
   default     = ""
   type        = string
 }
+
+variable "tags" {
+  description = "Tags to apply to tag-able resources"
+  default     = {}
+  type        = map(string)
+}

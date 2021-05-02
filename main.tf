@@ -1,5 +1,6 @@
 resource "aws_route53_zone" "this" {
   name = var.domain_name
+  tags = var.tags
 }
 
 resource "aws_route53_key_signing_key" "this" {
