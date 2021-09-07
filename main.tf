@@ -172,7 +172,7 @@ resource "aws_route53_record" "stripe_domainkey6_this" {
   records = ["${var.stripe_domainkey6}.dkim.custom-email-domain.stripe.com."]
 }
 resource "aws_route53_record" "stripe_bounce_this" {
-  count   = length(var.stripe_bounce) == true ? 1 : 0
+  count   = var.stripe_bounce == true ? 1 : 0
   zone_id = aws_route53_zone.this.zone_id
   name    = "bounce.${aws_route53_zone.this.name}"
   type    = "CNAME"
