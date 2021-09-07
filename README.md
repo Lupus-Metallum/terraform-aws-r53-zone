@@ -22,7 +22,8 @@ module "r53_zone_example_net" {
   signing_key_name      = "ExampleDefaultKey"
   root_txt              = [
     "protonmail-verification=0000000000000000000000",
-    "v=spf1 include:_spf.protonmail.ch -all"
+    "v=spf1 include:_spf.protonmail.ch -all",
+    "stripe-verification=000000000000",
   ]
   root_mx               = [
     "10 mail.protonmail.ch.",
@@ -34,5 +35,12 @@ module "r53_zone_example_net" {
   protonmail3_domainkey = "protonmail3.domainkey.00000000000000000000000000000000000000000000000000000.domains.proton.ch."
   github_verification_record = "000000000000"
   github_org_name            = "Lupus-Metallum"
+  stripe_domainkey1          = "000000000000"
+  stripe_domainkey2          = "000000000000"
+  stripe_domainkey3          = "000000000000"
+  stripe_domainkey4          = "000000000000"
+  stripe_domainkey5          = "000000000000"
+  stripe_domainkey6          = "000000000000"
+  stripe_bounce              = true
 }
 ```
