@@ -117,3 +117,66 @@ resource "aws_route53_record" "protonmail3_domainkey_this" {
 
   records = [var.protonmail3_domainkey]
 }
+resource "aws_route53_record" "stripe_domainkey1_this" {
+  count   = length(var.stripe_domainkey1) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "${var.stripe_domainkey1}._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = ["${var.stripe_domainkey1}.dkim.custom-email-domain.stripe.com."]
+}
+resource "aws_route53_record" "stripe_domainkey2_this" {
+  count   = length(var.stripe_domainkey2) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "${var.stripe_domainkey2}._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = ["${var.stripe_domainkey2}.dkim.custom-email-domain.stripe.com."]
+}
+resource "aws_route53_record" "stripe_domainkey3_this" {
+  count   = length(var.stripe_domainkey3) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "${var.stripe_domainkey3}._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = ["${var.stripe_domainkey3}.dkim.custom-email-domain.stripe.com."]
+}
+resource "aws_route53_record" "stripe_domainkey4_this" {
+  count   = length(var.stripe_domainkey4) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "${var.stripe_domainkey4}._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = ["${var.stripe_domainkey4}.dkim.custom-email-domain.stripe.com."]
+}
+resource "aws_route53_record" "stripe_domainkey5_this" {
+  count   = length(var.stripe_domainkey5) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "${var.stripe_domainkey5}._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = ["${var.stripe_domainkey5}.dkim.custom-email-domain.stripe.com."]
+}
+resource "aws_route53_record" "stripe_domainkey6_this" {
+  count   = length(var.stripe_domainkey6) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "${var.stripe_domainkey6}._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = ["${var.stripe_domainkey6}.dkim.custom-email-domain.stripe.com."]
+}
+resource "aws_route53_record" "stripe_bounce_this" {
+  count   = length(var.stripe_bounce) == true ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "bounce.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = ["custom-email-domain.stripe.com."]
+}

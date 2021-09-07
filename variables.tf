@@ -86,6 +86,48 @@ variable "protonmail3_domainkey" {
   type        = string
 }
 
+variable "stripe_domainkey1" {
+  description = "Value to use for the first Stripe DKIM CNAME Record, this is given in the custom domain setup page. This should be the auto-generated text prior to '._domainkey.example.com'"
+  default     = ""
+  type        = string
+}
+
+variable "stripe_domainkey2" {
+  description = "Value to use for the second Stripe DKIM CNAME Record, this is given in the custom domain setup page. This should be the auto-generated text prior to '._domainkey.example.com'"
+  default     = ""
+  type        = string
+}
+
+variable "stripe_domainkey3" {
+  description = "Value to use for the third Stripe DKIM CNAME Record, this is given in the custom domain setup page. This should be the auto-generated text prior to '._domainkey.example.com'"
+  default     = ""
+  type        = string
+}
+
+variable "stripe_domainkey4" {
+  description = "Value to use for the fourth Stripe DKIM CNAME Record, this is given in the custom domain setup page. This should be the auto-generated text prior to '._domainkey.example.com'"
+  default     = ""
+  type        = string
+}
+
+variable "stripe_domainkey5" {
+  description = "Value to use for the fifth Stripe DKIM CNAME Record, this is given in the custom domain setup page. This should be the auto-generated text prior to '._domainkey.example.com'"
+  default     = ""
+  type        = string
+}
+
+variable "stripe_domainkey6" {
+  description = "Value to use for the sixth Stripe DKIM CNAME Record, this is given in the custom domain setup page. This should be the auto-generated text prior to '._domainkey.example.com'"
+  default     = ""
+  type        = string
+}
+
+variable "stripe_bounce" {
+  description = "Should we create the Stripe boune cname record"
+  default     = false
+  type        = bool
+}
+
 variable "tags" {
   description = "Tags to apply to tag-able resources"
   default     = {}
