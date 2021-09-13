@@ -80,6 +80,18 @@ variable "protonmail2_domainkey" {
   type        = string
 }
 
+variable "ms_domainkey" {
+  description = "Value to use for the first Microsoft 365 DKIM CNAME Record, this is given in the https://security.microsoft.com/dkimv2 setup page."
+  default     = ""
+  type        = string
+}
+
+variable "ms_domainkey2" {
+  description = "Value to use for the second Microsoft 365 DKIM CNAME Record, this is given in the https://security.microsoft.com/dkimv2 setup page."
+  default     = ""
+  type        = string
+}
+
 variable "protonmail3_domainkey" {
   description = "Value to use for the third Protonmail DKIM CNAME Record, this is given in the custom domain setup page"
   default     = ""

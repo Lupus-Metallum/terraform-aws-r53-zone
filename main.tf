@@ -180,3 +180,21 @@ resource "aws_route53_record" "stripe_bounce_this" {
 
   records = ["custom-email-domain.stripe.com."]
 }
+resource "aws_route53_record" "o365_domainkey_this" {
+  count   = length(var.ms_domainkey) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "selector1._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = [var.ms_domainkey]
+}
+resource "aws_route53_record" "o365_domainkey_this2" {
+  count   = length(var.ms_domainkey2) > 0 ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "selector2._domainkey.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = [var.ms_domainkey2]
+}
