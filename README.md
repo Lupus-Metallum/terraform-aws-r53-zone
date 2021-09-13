@@ -44,5 +44,6 @@ module "r53_zone_example_net" {
   stripe_domainkey5          = "000000000000"
   stripe_domainkey6          = "000000000000"
   stripe_bounce              = true
+  atlassian_cloud_dkim       = true
 }
 ```

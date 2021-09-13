@@ -140,6 +140,12 @@ variable "stripe_bounce" {
   type        = bool
 }
 
+variable "atlassian_cloud_dkim" {
+  description = "Should we create the Atlassian Cloud DKIM cname records"
+  default     = false
+  type        = bool
+}
+
 variable "tags" {
   description = "Tags to apply to tag-able resources"
   default     = {}
