@@ -33,6 +33,8 @@ module "r53_zone_example_net" {
   protonmail_domainkey  = "protonmail.domainkey.00000000000000000000000000000000000000000000000000000.domains.proton.ch."
   protonmail2_domainkey = "protonmail2.domainkey.00000000000000000000000000000000000000000000000000000.domains.proton.ch."
   protonmail3_domainkey = "protonmail3.domainkey.00000000000000000000000000000000000000000000000000000.domains.proton.ch."
+  ms_domainkey          = "selector1-0000000._domainkey.0000000.onmicrosoft.com"
+  ms_domainkey2         = "selector2-0000000._domainkey.0000000.onmicrosoft.com"
   github_verification_record = "000000000000"
   github_org_name            = "Lupus-Metallum"
   stripe_domainkey1          = "000000000000"
