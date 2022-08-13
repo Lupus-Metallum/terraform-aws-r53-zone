@@ -198,21 +198,31 @@ resource "aws_route53_record" "o365_domainkey_this2" {
 
   records = [var.ms_domainkey2]
 }
-resource "aws_route53_record" "atlassian_cloud_domainkey_this" {
-  count   = var.atlassian_cloud_dkim == true ? 1 : 0
+resource "aws_route53_record" "atlassian_cloud_primary_dkim" {
+  count   = var.atlassian_cloud_primary_dkim != "" ? 1 : 0
   zone_id = aws_route53_zone.this.zone_id
-  name    = "s1._domainkey.${aws_route53_zone.this.name}"
+  name    = "atlassian-${var.atlassian_cloud_primary_dkim}._domainkey.${aws_route53_zone.this.name}"
   type    = "CNAME"
   ttl     = var.ttl
 
-  records = ["s1._domainkey.atlassian.net."]
+  records = ["atlassian-${var.atlassian_cloud_primary_dkim}.dkim.atlassian.net."]
 }
-resource "aws_route53_record" "atlassian_cloud_domainkey_this2" {
-  count   = var.atlassian_cloud_dkim == true ? 1 : 0
+resource "aws_route53_record" "atlassian_cloud_fallback_dkim" {
+  count   = var.atlassian_cloud_fallback_dkim != "" ? 1 : 0
   zone_id = aws_route53_zone.this.zone_id
-  name    = "s2._domainkey.${aws_route53_zone.this.name}"
+  name    = "atlassian-${var.atlassian_cloud_fallback_dkim}._domainkey.${aws_route53_zone.this.name}"
   type    = "CNAME"
   ttl     = var.ttl
 
-  records = ["s2._domainkey.atlassian.net."]
+  records = ["atlassian-${var.atlassian_cloud_fallback_dkim}.dkim.atlassian.net."]
+}
+
+resource "aws_route53_record" "atlassian_cloud_bounce" {
+  count   = var.atlassian_cloud_bounce == true ? 1 : 0
+  zone_id = aws_route53_zone.this.zone_id
+  name    = "atlassian-bounces.${aws_route53_zone.this.name}"
+  type    = "CNAME"
+  ttl     = var.ttl
+
+  records = ["bounces.mail-us.atlassian.net."]
 }
