@@ -1,7 +1,9 @@
 # terraform-aws-r53-zone
+
 TF Module for creating a R53 zone with DNSSEC, should be used in conjunction with lupus-metallum/dnssec-kms to create a key. This can be looped for unique keys per zone if desired. If a var.kms_key_arn is not specified, a zone with be created without DNSSEC.
 
 ## Example
+
 ``` Terraform
 module "dnssec_key" {
   source   = "Lupus-Metallum/dnssec-kms/aws"
@@ -12,11 +14,14 @@ module "dnssec_key" {
 
 module "r53_zone_example_net" {
   source  = "Lupus-Metallum/r53-zone/aws"
-  version = "1.2.1"
+  version = "1.7.0"
 
   domain_name           = "example.net"
   dnssec                = true
-  amazon_caa_record     = true
+  caa_record            = {
+    aws          = true
+    lets_encrypt = true
+  }
   outlook_autodiscover  = true
   kms_key_arn           = module.dnssec_key.key_arn
   signing_key_name      = "ExampleDefaultKey"
@@ -95,10 +100,10 @@ module "r53_zone_example_net" {
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
 | <a name="input_domain_name"></a> [domain\_name](#input\_domain\_name) | The name/fqdn of the Route53 Zone. | `string` | n/a | yes |
-| <a name="input_amazon_caa_record"></a> [amazon\_caa\_record](#input\_amazon\_caa\_record) | Should we add a Certificate Authority Authorization Record for Amazon CA's? | `bool` | `true` | no |
 | <a name="input_atlassian_cloud_bounce"></a> [atlassian\_cloud\_bounce](#input\_atlassian\_cloud\_bounce) | Should we create the Atlassian Cloud bounce cname record | `bool` | `false` | no |
 | <a name="input_atlassian_cloud_fallback_dkim"></a> [atlassian\_cloud\_fallback\_dkim](#input\_atlassian\_cloud\_fallback\_dkim) | Should we create the Atlassian Cloud DKIM fallback cname record | `string` | `""` | no |
 | <a name="input_atlassian_cloud_primary_dkim"></a> [atlassian\_cloud\_primary\_dkim](#input\_atlassian\_cloud\_primary\_dkim) | Should we create the Atlassian Cloud DKIM primary cname record | `string` | `""` | no |
+| <a name="input_caa_record"></a> [caa\_record](#input\_caa\_record) | Should we add a Certificate Authority Authorization Record for commonly used CA's? | <pre>object({<br>    aws          = optional(bool, false),<br>    lets_encrypt = optional(bool, false)<br>  })</pre> | `{}` | no |
 | <a name="input_dmarc_value"></a> [dmarc\_value](#input\_dmarc\_value) | Values to put in the root/apex dmarc record of the zone? | `list(string)` | `[]` | no |
 | <a name="input_dnssec"></a> [dnssec](#input\_dnssec) | Should DNSSEC be enabled for this domain | `bool` | `true` | no |
 | <a name="input_github_org_name"></a> [github\_org\_name](#input\_github\_org\_name) | Name of the GitHub org to add the record for? | `string` | `""` | no |

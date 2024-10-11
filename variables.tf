@@ -26,10 +26,13 @@ variable "ttl" {
   type        = number
 }
 
-variable "amazon_caa_record" {
-  description = "Should we add a Certificate Authority Authorization Record for Amazon CA's?"
-  default     = true
-  type        = bool
+variable "caa_record" {
+  description = "Should we add a Certificate Authority Authorization Record for commonly used CA's?"
+  default     = {}
+  type = object({
+    aws          = optional(bool, false),
+    lets_encrypt = optional(bool, false)
+  })
 }
 
 variable "outlook_autodiscover" {
