@@ -17,7 +17,7 @@ resource "aws_route53_hosted_zone_dnssec" "this" {
   hosted_zone_id = aws_route53_key_signing_key.this[0].hosted_zone_id
 
   depends_on = [
-    aws_route53_key_signing_key.example
+    aws_route53_key_signing_key.this
   ]
 }
 
