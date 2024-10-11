@@ -71,7 +71,7 @@ resource "aws_route53_record" "caa_this" {
   name    = aws_route53_zone.this.name
   type    = "CAA"
   ttl     = var.ttl
-  records = flatten(
+  records = concat(
     var.caa_record.aws == true ? [
       "0 issue \"amazon.com\"",
       "0 issue \"amazonaws.com\"",
